@@ -20,7 +20,8 @@ connection = pymysql.connect(
     host='localhost',
     user='root',
     password='Papayankee2',
-    database='biblioteca'
+    database='biblioteca', 
+    port=3306
 )
 
 cursor = connection.cursor()

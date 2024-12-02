@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = '9b7f0bbd0cf9b05caf200ff36e753ea4'
 
 UPLOAD_FOLDER = 'static/capas'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

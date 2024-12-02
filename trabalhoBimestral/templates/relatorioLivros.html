@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca - Imprimir Relatório</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background-color: #f4f7fa;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #2b7a78;
+        }
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+        }
+        .btn-add {
+            color: white;
+            margin: 20px 0;
+            text-align: right;
+        }
+        .btn-add:hover {
+            opacity: 0.8;
+        }
+        #relatorio {
+            margin-top: 13vh; 
+            margin-left: 15vw; 
+            margin-right: 15vw;
+            background-color: #CCF0EF;
+            padding: 5vh;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+            border-radius: 1vh;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="row" style="margin-bottom: 2%;">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid" style="padding: 1%; margin-left: 9%;">
+              <a class="navbar-brand font-monospace" style="color: #d5f7d1; font-size: 135%;" href="/pagInicio">BIBLIOTECA</a>
+              <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav" style="font-size: 120%;">
+                  <a class="nav-link" href="/livros">Livros</a>
+                  <a class="nav-link" href="/usuarios">Usuários</a>
+                  <a class="nav-link" href="/emprestimos">Empréstimos</a>
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline-danger"><a class="nav-link" href="/sair">Sair</a></button>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="row" id="relatorio">
+            <form action="/gerar_relatorio_livros" method="post">  
+                <label for="autor" class="form-label">Autor:</label>
+                <select class="form-select" id="autor" name="autor" style="margin-bottom: 2vh;">
+                    <option value="todos">Todos</option>
+                    {% for livro in livros %}
+                        <option value="{{ livro[2] }}">{{ livro[2] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="genero" class="form-label">Gênero:</label>
+                <select class="form-select" id="genero" name="genero" style="margin-bottom: 2vh;">
+                    <option value="todos">Todos</option>
+                    {% for livro in livros %}
+                        <option value="{{ livro[6] }}">{{ livro[6] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="datacadastro" class="form-label">Data de Cadastro:</label>
+                <select class="form-select" id="datacadastro" name="datacadastro" style="margin-bottom: 2vh;">
+                    <option value="todos">Todos</option>
+                    {% for livro in livros %}
+                        <option value="{{ livro[9] }}">{{ livro[9] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="classificacao" class="form-label">Classificação Indicativa:</label>
+                <select class="form-select" id="classificacao" name="classificacao" style="margin-bottom: 2vh;">
+                    <option value="todos">Todos</option>
+                    {% for livro in livros %}
+                        <option value="{{ livro[7] }}">{{ livro[7] }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="status" class="form-label">Status:</label>
+                <select class="form-select" id="status" name="status" style="margin-bottom: 2vh;">
+                    <option value="todos">Todos</option>
+                    {% for livro in livros %}
+                        <option value="{{ livro[11] }}">{{ livro[11] }}</option>
+                    {% endfor %}
+                </select>
+
+                <div style="text-align: right;">
+                    <button type="submit" class="btn btn-success mb-3 font-monospace">
+                        IMPRIMIR RELATÓRIO
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
